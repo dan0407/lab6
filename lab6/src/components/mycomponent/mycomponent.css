@@ -1,0 +1,9 @@
+.carta {
+    width: 200px; /* Ancho de la carta */
+    height: 300px; /* Alto de la carta */
+    border: 1px solid #ccc; /* Borde de la carta */
+    border-radius: 5px; /* Borde redondeado */
+    padding: 10px; /* Espacio interno */
+    margin: 10px; /* Margen externo */
+    display: inline-block; /* Para que las cartas se muestren en línea */
+  }

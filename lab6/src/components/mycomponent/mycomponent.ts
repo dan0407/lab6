@@ -1,3 +1,5 @@
+import styles from './mycomponent.css'
+
 export enum Attribute {
   'name'= 'name',
   'uid'= 'uid',
@@ -6,11 +8,11 @@ export enum Attribute {
   'gender'='gender',
   'area'='area',
   'position'='position',
-  'timeInCompany'='timeInCompany',
+  'timeincompany'='timeincompany',
   'experience'='experience',
 }
 
-class Mycomponent extends HTMLElement {
+class Component extends HTMLElement {
     name?:string;
     uid?: number;
     image?: string;
@@ -18,7 +20,7 @@ class Mycomponent extends HTMLElement {
     gender?:string;
     area?: string;
     position?: string;
-    timeInCompany?: number;
+    timeincompany?: number;
     experience?: number; 
         
   constructor() {
@@ -35,7 +37,7 @@ class Mycomponent extends HTMLElement {
     gender:null,
     area: null,
     position: null,
-    timeInCompany: null,
+    timeincompany: null,
     experience: null,
     };
     return Object.keys(attrs);
@@ -48,8 +50,8 @@ class Mycomponent extends HTMLElement {
                 case Attribute.age:
 				this.age = newValue ? Number(newValue) : undefined;
 				break;
-                case Attribute.timeInCompany:
-				this.timeInCompany = newValue ? Number(newValue) : undefined;
+                case Attribute.timeincompany:
+				this.timeincompany = newValue ? Number(newValue) : undefined;
 				break;
                 case Attribute.experience:
                     this.experience = newValue ? Number(newValue) : undefined;
@@ -67,7 +69,25 @@ class Mycomponent extends HTMLElement {
     this.render();
 }
 render() {
-    if (this.shadowRoot) {
-        this.shadowRoot.innerHTML =  ''
-
-customElements.define('my-component', Mycomponent);
+  if(this.shadowRoot){
+    this.shadowRoot.innerHTML=`<section class="carta">
+    <h1>${this.name}</h1>
+    <p>${this.uid} </p>
+    <img src=${this.image}/>
+    <p>${this.age}</p>
+    <p>${this.gender}</p>
+    <p>${this.area}</p>
+    <p>${this.position}</p>
+    <p>${this.timeincompany}</p>
+    <p>${this.experience}</p>
+    </section> 
+    `;
+  }
+   const cssmycomponent = this.ownerDocument.createElement("styles");
+   cssmycomponent.innerHTML = styles;
+   this.shadowRoot?.appendChild(cssmycomponent);
+  
+}
+}
+export default Component;
+customElements.define('my-component', Component);
